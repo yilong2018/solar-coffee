@@ -8,7 +8,6 @@ REPO_NAME ?= SolarCofee
 migrations:
 	cd ./SolarCoffee.Data && dotnet ef --startup-project ../SolarCoffee.Web/ migrations add $(mname) && cd ..
 
-db:
-	
+db:	
 	cd ./SolarCoffee.Data && dotnet ef --startup-project ../SolarCoffee.Web/ database update && cd ..
 
