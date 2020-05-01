@@ -19,5 +19,6 @@ namespace SolarCoffee.Data.Models{
     public string PostalCode { get; set; }
     [MaxLength(32)]
     public string Country { get; set; }
+  }
 
 }
