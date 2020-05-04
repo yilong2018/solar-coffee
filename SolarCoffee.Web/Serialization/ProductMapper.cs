@@ -4,7 +4,7 @@ namespace SolarCoffee.Web.Serialization
 {
   public class ProductMapper{
     //Map a Product data model to a ProductModel View model
-    public static ProductModel SerializeProductModel(Data.Models.Product product){
+    public static ProductModel SerializeProduct(Data.Models.Product product){
       return new ProductModel{
         Id = product.Id,
         CreatedOn = product.CreatedOn,
@@ -18,7 +18,7 @@ namespace SolarCoffee.Web.Serialization
     } 
 
     //Map a ProductModel View model to a Product data model
-    public static Data.Models.Product SerializeProduct(ProductModel product){
+    public static Data.Models.Product SerializeProductModel(ProductModel product){
       return new Data.Models.Product{
         Id = product.Id,
         CreatedOn = product.CreatedOn,

@@ -22,8 +22,15 @@ namespace SolarCoffee.Web.Controller
       //var productViewmodels = products.Select(product => ProductMapper.SerializeProductModel(product));
       //上面的语句可以简写：
       var productViewmodels = products
-      .Select(ProductMapper.SerializeProductModel);
+      .Select(ProductMapper.SerializeProduct);
       return Ok(productViewmodels);
+    }
+
+    [HttpPatch("api/product/{id}")]
+    public ActionResult ArchiveProduct(int id){
+      _logger.LogInformation("Archive product");
+      var archiveResult = _productService.ArchiveProduct(id);
+      return Ok(archiveResult);
     }
   }
 }

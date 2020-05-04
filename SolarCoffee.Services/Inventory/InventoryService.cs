@@ -74,7 +74,8 @@ namespace SolarCoffee.Services.Inventory{
         return new ServiceResponse<ProductInventory>{
             IsSuccess = false,
             Data = null,
-            Message = "Error Updating Product QuantityOnHand",
+            //Message = "Error Updating Product QuantityOnHand",
+            Message = e.StackTrace,
             Time = now
         };
       }
