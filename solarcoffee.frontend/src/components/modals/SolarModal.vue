@@ -2,44 +2,49 @@
   <transition name="modal-fade">
     <div class="modal-backdrop">
       <div
-        class="modal" 
-        role="dialog" 
-        aria-labelledby="modalTitle" 
+        class="modal"
+        role="dialog"
+        aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-      <header 
-        class="modal-header" 
-        id="modalTitle"
-      >
-        <slot name="header">
-        </slot>
-      </header>
+        <header
+          class="modal-header"
+          id="modalTitle"
+        >
+          <slot name="header">
+          </slot>
+        </header>
 
-      <section 
-        class="modal-body" 
-        id="modalDescription"
-      >
+        <section
+          class="modal-body"
+          id="modalDescription"
+        >
+          <slot name="body">
+          </slot>
+        </section>
 
-      <footer class="modal-footer">
-        <slot name="footer">
-        </slot>
-      </footer>
+        <footer class="modal-footer">
+          <slot name="footer">
+          </slot>
+        </footer>
+      </div>
     </div>
   </transition>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+  import Vue from "vue";
+  import Component from "vue-class-component";
 
-@Component({
-  name: 'SolarModal',
-  components: { }
-})
-export default class SolarModal extends Vue{
-  close(){
-    this.$emit("close");
+  @Component({
+    name: "SolarModal",
+    components: {}
+  })
+  export default class SolarModal extends Vue {
+    close() {
+      this.$emit("close");
+    }
   }
-}
 </script>
 
 <style scoped lang="scss">
@@ -50,7 +55,7 @@ export default class SolarModal extends Vue{
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +63,7 @@ export default class SolarModal extends Vue{
 
   .modal {
     background: #fff;
-    box-shadow: 2px, 2px, 2px, 1px;
+    box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
@@ -96,6 +101,6 @@ export default class SolarModal extends Vue{
 
   .modal-fade-enter-active,
   .modal-fade-leave-active {
-    transition: opacity .5s ease;
+    transition: opacity 0.5s ease;
   }
 </style>
