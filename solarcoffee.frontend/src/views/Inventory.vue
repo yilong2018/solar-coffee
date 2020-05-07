@@ -6,11 +6,11 @@
     <hr />
 
     <div class="inventory-actions">
-      <solar-button @click.native="showNewProductModal" id="addNewBtn">
+      <solar-button @button:click="showNewProductModal" id="addNewBtn">
         Add New Item
       </solar-button>
-      <solar-button @click.native="showShipmentModal" id="receiveShipmentBtn">
-        Recive Shipment
+      <solar-button @button:click="showShipmentModal" id="receiveShipmentBtn">
+        Receive Shipment
       </solar-button>
     </div>
 
@@ -47,11 +47,13 @@
         </td>
       </tr>
     </table>
-    <new-product-modal 
-      v-if="isNewProductVisible" 
-      @save:product="saveNewProduct" 
+    
+    <new-product-modal
+      v-if="isNewProductVisible"
+      @save:product="saveNewProduct"
       @close="closeModals"
     />
+ 
     <shipment-modal 
       v-if="isShipmentVisible" 
       :inventory="inventory" 
@@ -65,18 +67,19 @@
 import { Component, Vue } from "vue-property-decorator";
 import { IProduct, IProductInventory } from "../types/Product";
 // import { IProductInventory } from "@/types/Product";
+import { IShipment } from "../types/Shipment";
 import SolarButton from "@/components/SolarButton.vue";
 import NewProductModal from "@/components/modals/NewProductModal.vue";
 import ShipmentModal from "@/components/modals/ShipmentModal.vue";
-import { IShipment } from "../types/Shipment";
+
 
 @Component({
   name: "Inventory",
   components: { SolarButton, NewProductModal, ShipmentModal }
 })
 export default class Inventory extends Vue {
-  isNewProductVisible: boolean = false;
-  isShipmentVisible: boolean = false;
+  isNewProductVisible = false;
+  isShipmentVisible = false;
 
   inventory: IProductInventory[] = [
     {
@@ -110,13 +113,16 @@ export default class Inventory extends Vue {
       idealQuantity: 20
     }
   ];
+
   closeModals() {
     this.isShipmentVisible = false;
     this.isNewProductVisible = false;
   }
+  
   showNewProductModal() {
     this.isNewProductVisible = true;
   }
+  
   showShipmentModal() {
     this.isShipmentVisible = true;
   }

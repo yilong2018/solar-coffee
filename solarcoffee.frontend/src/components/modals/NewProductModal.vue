@@ -9,34 +9,42 @@
       <ul class="newProduct">
         <li>
           <label for="isTaxable">Is this product taxable?</label>
-          <input type="checkbox" id="isTaxable" v-model="newProduct.isTaxable">
+          <input 
+            type="checkbox" 
+            id="isTaxable" 
+            v-model="newProduct.isTaxable"
+          />
         </li>
         <li>
           <label for="productName">Name</label>
-          <input type="text" id="productName" v-model="newProduct.name">
+          <input type="text" id="productName" v-model="newProduct.name" />
         </li>
         <li>
           <label for="productDesc">Description</label>
-          <input type="text" id="productDesc" v-model="newProduct.description">
+          <input 
+            type="text" 
+            id="productDesc" 
+            v-model="newProduct.description"
+          />
         </li>
         <li>
           <label for="productPrice">Price (USD)</label>
-          <input type="number" id="productPrice" v-model="newProduct.price">
+          <input type="number" id="productPrice" v-model="newProduct.price" />
         </li>
       </ul>
     </template>
     <template v-slot:footer>
-      <solar-button 
-        type="button" 
+      <solar-button
+        type="button"
         @click.native="save"
-        aria-lable="save new item"
+        aria-label="save new item"
       >
         Save Product
       </solar-button>
-      <solar-button 
-        type="button" 
+      <solar-button
+        type="button"
         @click.native="close"
-        aria-lable="close modal"
+        aria-label="close modal"
       >
         Close
       </solar-button>
@@ -67,11 +75,9 @@ export default class NewProductModal extends Vue{
     price: 0,
     isArchived: false
   };
-
   close() {
     this.$emit("close");
   }
-
   save() {
     this.$emit("save:product", this.newProduct);
   }
@@ -79,12 +85,11 @@ export default class NewProductModal extends Vue{
 </script>
 
 <style scoped lang="scss">
-  .newProduct{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
+.newProduct {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
   input {
     width: 100%;
     height: 1.8rem;
@@ -100,4 +105,5 @@ export default class NewProductModal extends Vue{
     display: block;
     margin-bottom: 0.3rem;
   }
+}
 </style>

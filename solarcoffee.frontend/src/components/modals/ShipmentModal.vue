@@ -1,3 +1,4 @@
+
 <template>
   <solar-modal>
     <template v-slot:header>
@@ -6,7 +7,7 @@
     <template v-slot:body>
       <label for="product">Product Received:</label>
 
-      <select v-model="selectProduct" class="shipmentItems" id="product">
+      <select v-model="selectedProduct" class="shipmentItems" id="product">
         <option disabled value="">Please select one</option>
         <option v-for="item in inventory" :value="item" :key="item.product.id">
           {{ item.product.name }}
@@ -45,13 +46,12 @@ import { IProduct, IProductInventory } from "../../types/Product";
 import { IShipment } from "../../types/Shipment";
 
 @Component({
-  name: 'ShipmentModal',
+  name: "ShipmentModal",
   components: { SolarButton, SolarModal }
 })
-export default class ShipmentModal extends Vue{
+export default class ShipmentModal extends Vue {
   @Prop({ required: true, type: Array as () => IProductInventory[] })
   inventory!: IProductInventory[];
-
   selectedProduct: IProduct = {
     createdOn: new Date(),
     updatedOn: new Date(),
@@ -68,7 +68,7 @@ export default class ShipmentModal extends Vue{
   close() {
     this.$emit("close");
   }
-
+  
   save() {
     let shipment: IShipment = {
       productId: this.selectedProduct.id,
