@@ -64,6 +64,8 @@
 </template>
 
 <script lang="ts">
+
+
 import { Component, Vue } from "vue-property-decorator";
 import { IProduct, IProductInventory } from "../types/Product";
 // import { IProductInventory } from "@/types/Product";
@@ -71,7 +73,9 @@ import { IShipment } from "../types/Shipment";
 import SolarButton from "@/components/SolarButton.vue";
 import NewProductModal from "@/components/modals/NewProductModal.vue";
 import ShipmentModal from "@/components/modals/ShipmentModal.vue";
+import { InventoryService } from "../services/inventory-service";
 
+const inventoryService = new InventoryService();
 
 @Component({
   name: "Inventory",
@@ -81,38 +85,7 @@ export default class Inventory extends Vue {
   isNewProductVisible = false;
   isShipmentVisible = false;
 
-  inventory: IProductInventory[] = [
-    {
-      id: 1,
-      product: {
-        id: 1,
-        name: "Some Product",
-        description: "Good stuff",
-        price: 100,
-        createdOn: new Date(),
-        updatedOn: new Date(),
-        isTaxable: true,
-        isArchived: false
-      },
-      quantityOnHand: 100,
-      idealQuantity: 100
-    },
-    {
-      id: 2,
-      product: {
-        id: 2,
-        name: "Another Product",
-        description: "Good stuff",
-        price: 100,
-        createdOn: new Date(),
-        updatedOn: new Date(),
-        isTaxable: false,
-        isArchived: false
-      },
-      quantityOnHand: 40,
-      idealQuantity: 20
-    }
-  ];
+  inventory: IProductInventory[] = [];
 
   closeModals() {
     this.isShipmentVisible = false;
@@ -136,6 +109,14 @@ export default class Inventory extends Vue {
     console.log("saveNewShipment");
     console.log(shipment);
   }
+
+  async initialize() {
+    this.inventory = await inventoryService.getInvenotry();
+  }
+  async created() {
+    await this.initialize();
+  }
+
 }
 </script>
 
