@@ -27,7 +27,8 @@ namespace SolarCoffee.Web.Serialization
     //Map a SalesOrders (data) to OrderModels (View Models)
     public static List<OrderModel> SerializeOrdersToViewModels(IEnumerable<SalesOrder> orders){
       return orders.Select(order => new OrderModel{
-                CreatedOn = order.CreatedOn,
+        Id = order.Id,
+        CreatedOn = order.CreatedOn,
         UpdatedOn = order.UpdatedOn,
         SalesOrderItems = SerializeOrderItems(order.SalesOrderItems),
         Customer = CustomerMapper.SerializeCustomer(order.Customer),
