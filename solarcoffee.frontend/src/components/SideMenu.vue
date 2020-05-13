@@ -4,7 +4,7 @@
       <img
         id="imgLogo"
         alt="Solar Coffee logo"
-        src="../assets/images/solar-coffee-log.gif"
+        src="../assets/images/solar_coffee_log.gif"
       />
     </router-link>
     <h1>Management Portal</h1>
