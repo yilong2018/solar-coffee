@@ -15,7 +15,7 @@ const state = new GlobalStore();
 const mutations = make.mutations(state);
 
 const actions = {
-  async assignSnapshots({ commit }) {
+  async assignSnapshots({ commit }:any) {
     const inventoryService = new InventoryService();
     let res = await inventoryService.getSnapshotHistory();
 

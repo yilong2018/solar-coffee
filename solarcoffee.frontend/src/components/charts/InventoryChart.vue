@@ -6,8 +6,7 @@
       height="300" 
       :options="options"
       :series="series"
-    >
-    </apexchart>
+    ></apexchart>
   </div>
 </template>
 
@@ -15,6 +14,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { IInventoryTimeline } from "../../types/InventoryGraph";
 import { Sync,Get } from "vuex-pathify";
+
+import VueApexCharts from 'vue-apexcharts';
+Vue.component('apexchart', VueApexCharts)
 
 @Component({
   name: 'InventoryChart',
@@ -49,6 +51,7 @@ export default class InventoryChart extends Vue {
       data: snapshot.quantityOnHand
     }));
   }
+  
   async created() {
     await this.$store.dispatch("assignSnapshots");
   }
