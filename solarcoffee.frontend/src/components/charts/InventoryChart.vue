@@ -13,7 +13,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { IInventoryTimeline } from "../../types/InventoryGraph";
-import { Sync,Get } from "vuex-pathify";
+import { Sync, Get } from "vuex-pathify";
+
+import moment from 'moment';
 
 import VueApexCharts from 'vue-apexcharts';
 Vue.component('apexchart', VueApexCharts)
