@@ -28,7 +28,7 @@ namespace SolarCoffee.Services.Inventory{
     //Return Snapshot history for the previous 6 hours
     public List<ProductInventorySnapshot> GetSnapshotHistory()
     {
-      var earliest = DateTime.UtcNow - TimeSpan.FromHours(266);
+      var earliest = DateTime.UtcNow - TimeSpan.FromHours(6);
       return _db.ProductInventorySnapshots
                 .Include(snap => snap.Product)
                 .Where(snap 

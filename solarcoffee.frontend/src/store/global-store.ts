@@ -16,7 +16,7 @@ const mutations = make.mutations(state);
 
 const actions = {
   async assignSnapshots({ commit }:any) {
-    console.log('assignSnapshots');
+    
     const inventoryService = new InventoryService();
     let res = await inventoryService.getSnapshotHistory();
 

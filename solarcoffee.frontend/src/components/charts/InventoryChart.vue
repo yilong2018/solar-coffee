@@ -58,8 +58,6 @@ export default class InventoryChart extends Vue {
   
   async created() {
     await this.$store.dispatch("assignSnapshots");
-    console.log(this.snapshotTimeline);
-    console.log(this.timelineBuilt);
   }
 }
 </script>
