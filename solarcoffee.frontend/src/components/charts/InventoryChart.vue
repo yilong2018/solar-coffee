@@ -25,10 +25,12 @@ Vue.component('apexchart', VueApexCharts)
 export default class InventoryChart extends Vue {
   @Sync("snapshotTimeline")
   snapshotTimeline: IInventoryTimeline;
-
+  
   @Get("isTimelineBuilt")
   timelineBuilt?: boolean;
 
+  
+  
   get options() {
     return {
       dataLabels: { enabled: false },
@@ -54,6 +56,8 @@ export default class InventoryChart extends Vue {
   
   async created() {
     await this.$store.dispatch("assignSnapshots");
+    console.log(this.snapshotTimeline);
+    console.log(this.timelineBuilt);
   }
 }
 </script>

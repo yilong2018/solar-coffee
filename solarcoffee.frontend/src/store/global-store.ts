@@ -8,7 +8,7 @@ class GlobalStore {
     timeline: []
   };
 
-  isTimelineBuilt: boolean = false;
+  isTimelineBuilt: boolean = true;
 }
 
 const state = new GlobalStore();
@@ -16,6 +16,7 @@ const mutations = make.mutations(state);
 
 const actions = {
   async assignSnapshots({ commit }:any) {
+    console.log('assignSnapshots');
     const inventoryService = new InventoryService();
     let res = await inventoryService.getSnapshotHistory();
 

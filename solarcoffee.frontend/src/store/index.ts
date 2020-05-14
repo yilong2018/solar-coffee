@@ -10,9 +10,9 @@ pathify.options.deep = 2;
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  plugins: [pathify.plugin],
   ...global,
   mutations: {},
   actions: {},
-  modules: {},
-  plugins: [pathify.plugin]
+  modules: {}
 });
