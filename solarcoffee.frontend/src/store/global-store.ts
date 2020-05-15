@@ -1,6 +1,7 @@
 import { make } from "vuex-pathify";
 import { IInventoryTimeline } from "@/types/InventoryGraph";
 import { InventoryService } from "@/services/inventory-service";
+import moment from 'moment';
 
 class GlobalStore {
   snapshotTimeline: IInventoryTimeline = {
@@ -8,7 +9,7 @@ class GlobalStore {
     timeline: []
   };
 
-  isTimelineBuilt: boolean = true;
+  isTimelineBuilt: boolean = false;
 }
 
 const state = new GlobalStore();
@@ -22,6 +23,7 @@ const actions = {
 
     let timeline: IInventoryTimeline = {
       productInventorySnapshots: res.productInventorySnapshots,
+        // categories: this.snapshotTimeline.timeline.map(t => moment(t).format("HH:mm:ss")),
       timeline: res.timeline
     };
 

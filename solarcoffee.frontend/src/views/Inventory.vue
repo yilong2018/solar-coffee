@@ -143,6 +143,7 @@ export default class Inventory extends Vue {
 
   async initialize() {
     this.inventory = await inventoryService.getInvenotry();
+    await this.$store.dispatch("assignSnapshots");
   }
   async created() {
     await this.initialize();

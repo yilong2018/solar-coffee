@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isTimelineBuilt">
     <apexchart 
       type="area"
       :width="'100%'" 
@@ -29,11 +29,13 @@ export default class InventoryChart extends Vue {
   snapshotTimeline: IInventoryTimeline;
   
   @Get("isTimelineBuilt")
-  timelineBuilt?: boolean;
+  isTimelineBuilt?: boolean;
 
   
   
   get options() {
+    console.log(this.snapshotTimeline.timeline);
+    console.log(this.snapshotTimeline.timeline.map(t => moment(t).add(8, 'hour')));
     return {
       dataLabels: { enabled: false },
       fill: {
@@ -43,13 +45,20 @@ export default class InventoryChart extends Vue {
         curve: "smooth"
       },
       xaxis: {
-        categories: this.snapshotTimeline.timeline,
+        categories: this.snapshotTimeline.timeline.map(t => moment(t).add(8, 'hour')),
+        // categories: this.snapshotTimeline.timeline.map(t => moment(t).format("YY-MM-DD HH:mm:ss"));
         type: "datetime"
       }
     };
   }
 
   get series() {
+    // console.log(
+    //   this.snapshotTimeline.productInventorySnapshots.map(snapshot => ({
+    //   name: snapshot.productId,
+    //   data: snapshot.quantityOnHand
+    // }))
+    // );
     return this.snapshotTimeline.productInventorySnapshots.map(snapshot => ({
       name: snapshot.productId,
       data: snapshot.quantityOnHand
@@ -57,7 +66,7 @@ export default class InventoryChart extends Vue {
   }
   
   async created() {
-    await this.$store.dispatch("assignSnapshots");
+    // await this.$store.dispatch("assignSnapshots");
   }
 }
 </script>
