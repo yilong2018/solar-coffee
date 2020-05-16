@@ -34,8 +34,8 @@ export default class InventoryChart extends Vue {
   
   
   get options() {
-    console.log(this.snapshotTimeline.timeline);
-    console.log(this.snapshotTimeline.timeline.map(t => moment(t).add(8, 'hour')));
+    // console.log(this.snapshotTimeline.timeline);
+    // console.log(this.snapshotTimeline.timeline.map(t => moment(t).format("MM-DD HH:mm:ss")));
     return {
       dataLabels: { enabled: false },
       fill: {
@@ -45,8 +45,8 @@ export default class InventoryChart extends Vue {
         curve: "smooth"
       },
       xaxis: {
-        categories: this.snapshotTimeline.timeline.map(t => moment(t).add(8, 'hour')),
-        // categories: this.snapshotTimeline.timeline.map(t => moment(t).format("YY-MM-DD HH:mm:ss"));
+        // categories: this.snapshotTimeline.timeline.map(t => moment(t).add(8, 'hour')),
+        categories: this.snapshotTimeline.timeline.map(t => moment(t).add(8,'hours').format("MM-DD HH:mm:ss")),
         type: "datetime"
       }
     };
